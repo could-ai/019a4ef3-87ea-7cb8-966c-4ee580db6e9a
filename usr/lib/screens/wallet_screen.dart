@@ -30,7 +30,7 @@ class WalletScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 20, color: Colors.white70),
                   ),
                   Text(
-                    '$10,000.00',
+                    '\\$10,000.00',
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -66,7 +66,7 @@ class WalletScreen extends StatelessWidget {
                         style: const TextStyle(color: Colors.white70),
                       ),
                       trailing: Text(
-                        index % 2 == 0 ? '+$500' : '-$200',
+                        index % 2 == 0 ? '+\\$500' : '-\\$200',
                         style: TextStyle(
                           color: index % 2 == 0 ? Colors.green : Colors.red,
                           fontWeight: FontWeight.bold,

@@ -57,7 +57,7 @@ class _GameScreenState extends State<GameScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              'Bet Amount: $${betAmount.toStringAsFixed(0)}',
+              'Bet Amount: \\$${betAmount.toStringAsFixed(0)}',
               style: const TextStyle(fontSize: 18, color: Colors.white70),
             ),
             Slider(

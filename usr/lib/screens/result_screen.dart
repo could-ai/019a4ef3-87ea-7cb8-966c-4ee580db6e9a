@@ -83,7 +83,7 @@ class ResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              isWin ? 'Prize: $500' : 'Loss: $100',
+              isWin ? 'Prize: \\$500' : 'Loss: \\$100',
               style: const TextStyle(
                 fontSize: 18,
                 color: Colors.white70,
