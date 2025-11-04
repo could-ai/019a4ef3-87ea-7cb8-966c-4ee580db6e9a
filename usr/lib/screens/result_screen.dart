@@ -5,7 +5,6 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // For demo purposes, randomly select a winning color
     final List<Color> colors = [
       Colors.red,
       Colors.green,
@@ -15,7 +14,7 @@ class ResultScreen extends StatelessWidget {
       Colors.orange,
     ];
     final winningColor = colors[DateTime.now().millisecondsSinceEpoch % colors.length];
-    final isWin = true; // Placeholder for win/loss logic
+    final isWin = true;
 
     return Scaffold(
       appBar: AppBar(
@@ -65,7 +64,7 @@ class ResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             Text(
-              'Winning Color: ${_getColorName(winningColor)}',
+              'Winning Color: \\${_getColorName(winningColor)}',
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -83,7 +82,7 @@ class ResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              isWin ? 'Prize: \\$500' : 'Loss: \\$100',
+              isWin ? 'Prize: \$500' : 'Loss: \$100',
               style: const TextStyle(
                 fontSize: 18,
                 color: Colors.white70,

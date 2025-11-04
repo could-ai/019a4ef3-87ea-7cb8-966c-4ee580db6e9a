@@ -93,11 +93,11 @@ class _HistoryProfileScreenState extends State<HistoryProfileScreen>
                       style: const TextStyle(color: Colors.white),
                     ),
                     subtitle: Text(
-                      'Bet: \\$200 | Result: ${isWin ? 'Win' : 'Loss'}',
+                      'Bet: \$200 | Result: \\${isWin ? 'Win' : 'Loss'}',
                       style: const TextStyle(color: Colors.white70),
                     ),
                     trailing: Text(
-                      isWin ? '+\\$500' : '-\\$200',
+                      isWin ? '+\$500' : '-\$200',
                       style: TextStyle(
                         color: isWin ? Colors.green : Colors.red,
                         fontWeight: FontWeight.bold,
@@ -148,12 +148,11 @@ class _HistoryProfileScreenState extends State<HistoryProfileScreen>
           const SizedBox(height: 30),
           _buildProfileItem('Total Games Played', '150'),
           _buildProfileItem('Win Rate', '65%'),
-          _buildProfileItem('Total Earnings', '\\$7,500'),
+          _buildProfileItem('Total Earnings', '\$7,500'),
           _buildProfileItem('Favorite Color', 'Blue'),
           const Spacer(),
           ElevatedButton(
             onPressed: () {
-              // Handle logout
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Logged out successfully!')),
               );
