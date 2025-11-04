@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'screens/login_register_screen.dart';
+import 'screens/wallet_screen.dart';
+import 'screens/game_screen.dart';
+import 'screens/result_screen.dart';
+import 'screens/history_profile_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,135 +22,75 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF1A1A2E),
         primaryColor: const Color(0xFFE94560),
       ),
-      home: const HomeScreen(),
+      home: const MainNavigationScreen(),
+      routes: {
+        '/login': (context) => const LoginRegisterScreen(),
+        '/wallet': (context) => const WalletScreen(),
+        '/game': (context) => const GameScreen(),
+        '/result': (context) => const ResultScreen(),
+        '/history': (context) => const HistoryProfileScreen(),
+      },
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final List<Color> colors = [
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.yellow,
-    Colors.purple,
-    Colors.orange,
-    Colors.pink,
-    Colors.teal,
-    Colors.cyan,
-    Colors.amber,
-    Colors.indigo,
-    Colors.lime,
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    LoginRegisterScreen(),
+    WalletScreen(),
+    GameScreen(),
+    ResultScreen(),
+    HistoryProfileScreen(),
   ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Colour Trading'),
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.login),
+            label: 'Login',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'Wallet',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.palette),
+            label: 'Game',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: 'Result',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'History',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: const Color(0xFFE94560),
+        unselectedItemColor: Colors.white70,
         backgroundColor: const Color(0xFF16213E),
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: const Color(0xFF16213E),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Balance',
-                    style: TextStyle(fontSize: 20, color: Colors.white70),
-                  ),
-                  Text(
-                    '\$10,000.00',
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Trade Colors',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1,
-                ),
-                itemCount: colors.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: colors[index],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        // Handle color selection
-                      },
-                      child: Center(
-                        child: Text(
-                          _getColorName(colors[index]),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(
-                                blurRadius: 10.0,
-                                color: Colors.black,
-                                offset: Offset(2.0, 2.0),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+        onTap: _onItemTapped,
       ),
     );
-  }
-
-  String _getColorName(Color color) {
-    if (color == Colors.red) return 'Red';
-    if (color == Colors.green) return 'Green';
-    if (color == Colors.blue) return 'Blue';
-    if (color == Colors.yellow) return 'Yellow';
-    if (color == Colors.purple) return 'Purple';
-    if (color == Colors.orange) return 'Orange';
-    if (color == Colors.pink) return 'Pink';
-    if (color == Colors.teal) return 'Teal';
-    if (color == Colors.cyan) return 'Cyan';
-    if (color == Colors.amber) return 'Amber';
-    if (color == Colors.indigo) return 'Indigo';
-    if (color == Colors.lime) return 'Lime';
-    return 'Color';
   }
 }
